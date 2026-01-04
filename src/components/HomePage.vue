@@ -31,29 +31,29 @@ const createLineChart = () => {
 
 <template>
   <div class="p-6 bg-gray-100 min-h-screen rounded-md">
-    <h2 class="text-3xl font-bold">Sales</h2>
+    <h2 class="text-3xl font-bold">Total Sales</h2>
     
     <div class="grid grid-cols-4 gap-4 my-6">
-      <div class="p-4 bg-orange-100 rounded-lg">
+      <div class="p-4 bg-white rounded-lg shadow">
         <p class="text-gray-600">ប្រាក់ចំណូល</p>
         <p class="text-lg font-bold">{{ receipts }}</p>
       </div>
-      <div class="p-4 bg-green-100 rounded-lg">
+      <div class="p-4 bg-white rounded-lg shadow">
         <p class="text-gray-600">ចំនួនលក់</p>
         <p class="text-lg font-bold">{{ replenishment }}</p>
       </div>
-      <div class="p-4 bg-purple-100 rounded-lg">
-        <p class="text-gray-600">Number of Checks</p>
+      <div class="p-4 bg-white rounded-lg shadow">
+        <p class="text-gray-600">ចំនួនកុំព្យូទ័រ</p>
         <p class="text-lg font-bold">{{ numberOfChecks }}</p>
       </div>
-      <div class="p-4 bg-blue-100 rounded-lg">
-        <p class="text-gray-600">Average Check</p>
+      <!-- <div class="p-4 bg-white rounded-lg shadow">
+        <p class="text-gray-600"></p>
         <p class="text-lg font-bold">{{ averageCheck }}</p>
-      </div>
+      </div> -->
     </div>
     
     <div class="grid grid-cols-3 gap-4">
-      <canvas id="lineChart" class="bg-white p-4 rounded-lg shadow"></canvas>
+      <!-- <canvas id="lineChart" class="bg-white p-4 rounded-lg shadow"></canvas> -->
     </div>
   </div>
 </template>
