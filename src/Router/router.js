@@ -10,7 +10,7 @@ import RegisterAdmin from "../Partial/RegisterAdmin.vue";
 import Dashboard from "../views/Dashboard.vue";
 import HomePage from "../components/HomePage.vue";
 import Support from "../views/support_page.vue";
-import StaffList from "../components/"
+import StaffList from "../components/Staff_list.vue"
 
 const routes = [
 {   
@@ -39,7 +39,7 @@ const routes = [
         { name: 'PaymentPage', path: "/payment", component: PaymentPage, meta: { requiresAuth: true}},
         { name: 'ReportPage', path: "/reports", component: ReportPage, meta: { requiresAuth: true}},
         { name: 'AddProduct', path: "/add-product", component: AddProduct, meta: { requiresAuth: true}},
-        { name: 'support', path: "/support", component: Supports, meta: {requiresAuth: true}},
+        { name: 'support', path: "/support", component: Support, meta: {requiresAuth: true}},
         { name: 'staff', path: "/staff", component: StaffList, meta: {requiresAuth: true}},
         
     ]
