@@ -1,0 +1,59 @@
+import { createRouter, createWebHistory } from "vue-router";
+import ProductCards from "../components/ProductCards.vue";
+import ProductList from "../components/ProductList.vue";
+import PaymentPage from "../components/PaymentPage.vue";
+import AddProduct from "../components/AddProduct.vue";
+import ReportPage from "../Partial/ReportPage.vue";
+import OrderPage from "../Partial/OrderPage.vue";
+import LoginPage from "../Partial/LoginPage.vue";
+import RegisterAdmin from "../Partial/RegisterAdmin.vue";
+import Dashboard from "../views/Dashboard.vue";
+import HomePage from "../components/HomePage.vue";
+
+const routes = [
+{   
+    path: '/' ,
+    redirect: '/login'
+},
+{ 
+    name: 'LoginPage', 
+    path: '/login', 
+    component: LoginPage 
+},
+{
+    name: 'RegisterAdmin',
+    path: '/register', 
+    component: RegisterAdmin
+},
+{
+    name: 'Dashboard',
+    path: '/dashboard', component: Dashboard,
+    children:[
+        
+        { name: 'HomePage', path: "/home", component: HomePage, meta: { requiresAuth: true}},
+        { name: 'ProductCards', path: "/cards", component: ProductCards, meta: { requiresAuth: true}},
+        { name: 'ProductList', path: "/list", component: ProductList, meta: { requiresAuth: true}},
+        { name: 'OrderPage', path: "/order", component: OrderPage, meta: { requiresAuth: true}},
+        { name: 'PaymentPage', path: "/payment", component: PaymentPage, meta: { requiresAuth: true}},
+        { name: 'ReportPage', path: "/reports", component: ReportPage, meta: { requiresAuth: true}},
+        { name: 'AddProduct', path: "/add-product", component: AddProduct, meta: { requiresAuth: true}}
+        
+    ]
+}
+];
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes
+});
+router.beforeEach((to, from, next) => {
+    const authToken = localStorage.getItem('authToken');
+    if (to.matched.some(record => record.meta.requiresAuth) && !authToken) {
+      next({ name: 'login' });
+    } else {
+      next();
+    }
+});
+
+
+export default router;
