@@ -69,7 +69,7 @@ const selectStorage = (storageOption) => {
         <div class="w-full flex">
             <div v-if="isMenu" class="w-[20%] h-screen place-items-center shadow-md relative">
                 <div class="py-10 w-full place-items-center">
-                    <img class="w-15" src="../image/icon/vecteezy_computer-logo-design_35537076 [Converted].jpg" alt="">
+                    <img class="w-15" src="../image/icon/vecteezy_computer.jpg" alt="">
                     <label class="font-[poppins] Poppins-600 ml-22" for="">Computer Store</label>
                 </div>
                 <div class="h-auto py-20 list-none w-full place-items-center relative">
