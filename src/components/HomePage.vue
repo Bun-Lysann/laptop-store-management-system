@@ -3,10 +3,10 @@ import { ref, onMounted } from 'vue';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-const receipts = ref(45089.32);
+const receipts = ref(0);
 const replenishment = ref(0.0);
-const numberOfChecks = ref(459);
-const averageCheck = ref(98.23);
+const numberOfChecks = ref(0);
+const averageCheck = ref(0);
 
 onMounted(() => {
   // createLineChart();
@@ -35,11 +35,11 @@ const createLineChart = () => {
     
     <div class="grid grid-cols-4 gap-4 my-6">
       <div class="p-4 bg-orange-100 rounded-lg">
-        <p class="text-gray-600">Receipts</p>
+        <p class="text-gray-600">ប្រាក់ចំណូល</p>
         <p class="text-lg font-bold">{{ receipts }}</p>
       </div>
       <div class="p-4 bg-green-100 rounded-lg">
-        <p class="text-gray-600">Replenishment</p>
+        <p class="text-gray-600">ចំនួនលក់</p>
         <p class="text-lg font-bold">{{ replenishment }}</p>
       </div>
       <div class="p-4 bg-purple-100 rounded-lg">
