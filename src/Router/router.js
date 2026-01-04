@@ -9,6 +9,8 @@ import LoginPage from "../Partial/LoginPage.vue";
 import RegisterAdmin from "../Partial/RegisterAdmin.vue";
 import Dashboard from "../views/Dashboard.vue";
 import HomePage from "../components/HomePage.vue";
+import Support from "../views/support_page.vue";
+import StaffList from "../components/"
 
 const routes = [
 {   
@@ -36,7 +38,9 @@ const routes = [
         { name: 'OrderPage', path: "/order", component: OrderPage, meta: { requiresAuth: true}},
         { name: 'PaymentPage', path: "/payment", component: PaymentPage, meta: { requiresAuth: true}},
         { name: 'ReportPage', path: "/reports", component: ReportPage, meta: { requiresAuth: true}},
-        { name: 'AddProduct', path: "/add-product", component: AddProduct, meta: { requiresAuth: true}}
+        { name: 'AddProduct', path: "/add-product", component: AddProduct, meta: { requiresAuth: true}},
+        { name: 'support', path: "/support", component: Supports, meta: {requiresAuth: true}},
+        { name: 'staff', path: "/staff", component: StaffList, meta: {requiresAuth: true}},
         
     ]
 }
