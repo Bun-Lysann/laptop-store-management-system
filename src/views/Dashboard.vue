@@ -99,14 +99,14 @@ const selectStorage = (storageOption) => {
                             <label class="ml-4 font-[Moul] font-semibold text-gray-600" for="">ប្រព័ន្ធគ្រប់គ្រងហាងលក់កុំព្យូទ័រ</label>
                         </div>
                         <div class="flex place-content-center justify-end space-x-4 mr-4">
-                            <button @click="toggleFilter" class="item-center rounded-sm p-1 shadow-md hover:bg-gray-200">
+                            <!-- <button @click="toggleFilter" class="item-center rounded-sm p-1 shadow-md hover:bg-gray-200">
                                 <img src="../image/icon/filter.png" alt="" class="w-6 h-6">
-                            </button>
-                            <button @click="" class="item-center rounded-sm p-1 shadow-md hover:bg-gray-200">
+                            </button> -->
+                            <!-- <button @click="" class="item-center rounded-sm p-1 shadow-md hover:bg-gray-200">
                                 <router-link :to="{ name: 'PaymentPage' }">
                                     <img src="../image/icon/wallet.png" alt="" class="w-6 h-6">
                                 </router-link>
-                            </button>
+                            </button> -->
                             <button class="item-center rounded-sm p-1 shadow-md hover:bg-gray-200">
                                 <router-link :to="{ name: 'AddProduct' }">
                                     <img src="../image/icon/more.png" alt="" class="w-6 h-6">
