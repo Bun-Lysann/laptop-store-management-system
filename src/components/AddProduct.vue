@@ -1,79 +1,15 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { addData, newProduct, handleImageUpload, resetForm } from "../backends/dataStorage.js";
 
-// Reactive product list
-const products = ref([]);
-
-// New product form
-const newProduct = ref({
-  name: "",
-  serial: "",
-  ram: "",
-  storage: "",
-  cpu: "",
-  gpu: "",
-  display: "",
-  battery: "",
-  price: "",
-  dateRelease: "",
-  image: "",
-  category: "",
-});
-
-// Load products from localStorage
-const loadProducts = () => {
-  products.value = JSON.parse(localStorage.getItem("products")) || [];
-};
-
-// Save products to localStorage
-const saveProducts = () => {
-  localStorage.setItem("products", JSON.stringify(products.value));
-};
-
-// Handle image upload
-const handleImageUpload = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      newProduct.value.image = reader.result; // Convert image to base64
-    };
-    reader.readAsDataURL(file);
-  }
-};
-
-// Add a new product
 const addProduct = () => {
-  if (!newProduct.value.name || !newProduct.value.serial) {
-    alert("Product Name and Serial Code are required!");
-    return;
+  try {
+    addData();
+    alert("Product added successfully");
+    resetForm();
+  } catch (err) {
+    alert(err?.message || "Failed to add product");
   }
-
-  products.value.push({ ...newProduct.value });
-  saveProducts(); // Update localStorage
-  resetForm();
 };
-
-// Reset form (Cancel button functionality)
-const resetForm = () => {
-  newProduct.value = {
-    name: "",
-    serial: "",
-    ram: "",
-    storage: "",
-    cpu: "",
-    gpu: "",
-    display: "",
-    battery: "",
-    price: "",
-    dateRelease: "",
-    image: "",
-    category: "",
-  };
-};
-
-// Load data when the component mounts
-onMounted(loadProducts);
 </script>
 
 <template>

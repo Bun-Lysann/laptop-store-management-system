@@ -35,6 +35,10 @@
   
   <script setup>
   import { ref, computed } from "vue";
+  import { orders, finalizeSale, addPayment } from "../backends/dataStorage.js";
+  import { useRouter } from 'vue-router';
+
+  const router = useRouter();
   
   // Date formatting utility
   const formatExpiryDate = (expiryDate) => {
@@ -50,41 +54,27 @@
     cvv: "",
   });
   
-  // Compute the total price from localStorage
+  // Compute the total price from centralized `orders` (cart)
   const totalPrice = computed(() => {
-    const orders = JSON.parse(localStorage.getItem("orders")) || [];
-    return orders.reduce((total, order) => total + order.price * order.quantity, 0).toFixed(2);
+    const list = orders.value || [];
+    return list.reduce((total, order) => total + Number(order.price || 0) * Number(order.quantity || 1), 0).toFixed(2);
   });
   
   // Handle the payment form submission
   const handlePayment = () => {
-    // Retrieve any existing purchase details from localStorage
-    const storedPurchases = JSON.parse(localStorage.getItem("purchaseDetails")) || [];
-  
-    // Retrieve orders (new purchase details)
-    const newPurchases = JSON.parse(localStorage.getItem("orders")) || [];
-  
-    // Add the payment details (name, expiration date) to the new purchases
-    newPurchases.forEach(order => {
-      order.nameOnCard = paymentDetails.value.name;  // Store the name on card with each purchase
-      order.expiryDate = formatExpiryDate(paymentDetails.value.expiryDate);  // Store formatted expiration date
-    });
-  
-    // Combine the old and new purchases
-    const allPurchases = [...storedPurchases, ...newPurchases];
-  
-    // Save the combined purchases into localStorage
-    localStorage.setItem("purchaseDetails", JSON.stringify(allPurchases));
-  
-    // Save payment details in localStorage
-    localStorage.setItem("paymentDetails", JSON.stringify(paymentDetails.value));
-  
-    alert("Payment successful!");
-  
-    // Optionally, clear orders after payment, or leave them for the next purchase
-    localStorage.removeItem("orders");
-  
-    // Optionally, reload the page or redirect
-    location.reload();
+    try {
+      // finalize sale (moves cart to sales and clears cart)
+      const sale = finalizeSale({ payerName: paymentDetails.value.name, cardNumber: paymentDetails.value.cardNumber });
+
+      // record the payment
+      addPayment({ nameOnCard: paymentDetails.value.name, expiryDate: paymentDetails.value.expiryDate, amount: sale.total });
+
+      alert("Payment successful!");
+
+      // navigate to reports page to view the specific sale
+      router.push({ name: 'ReportPage', query: { saleId: sale.id } });
+    } catch (err) {
+      alert(err?.message || 'Payment failed');
+    }
   };
   </script>
