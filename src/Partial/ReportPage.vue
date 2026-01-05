@@ -50,7 +50,7 @@
             <div class="border p-6">
               <div class="flex items-center justify-between mb-4">
                 <div>
-                  <img v-if="companyLogo" :src="companyLogo" alt="logo" class="w-24 h-24 object-contain" />
+                  <!-- <img v-if="companyLogo" :src="companyLogo" alt="logo" class="w-24 h-24 object-contain" /> -->
                 </div>
                 <div class="text-right">
                   <h2 class="text-xl font-bold mb-2">{{ reportTitle || 'Report' }}</h2>
