@@ -116,9 +116,9 @@ const createBarChart = () => {
 
     <div class="h-screen grid grid-cols-2 gap-4 place-items-start">
       <!-- <canvas id="lineChart" class="bg-white p-4 rounded-lg shadow"></canvas> -->
-      <!-- <div class="w-full h-full bg-white p-4 rounded-lg shadow">
+      <div class="w-full h-full bg-white p-4 rounded-lg shadow">
         <canvas id="barChart" class="bg-white p-4 rounded-lg"></canvas>
-      </div> -->
+      </div>
       <div class="w-full h-full bg-white p-4 rounded-lg shadow">
         <BarChart />
       </div>
