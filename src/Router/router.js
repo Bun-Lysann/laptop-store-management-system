@@ -98,7 +98,7 @@ const routes = [
       { name: "PaymentPage", path: "payment", component: PaymentPage, meta: { requiresAuth: true } },
       { name: "ReportPage", path: "reports", component: ReportPage, meta: { requiresAuth: true } },
       { name: "AddProduct", path: "add-product", component: AddProduct, meta: { requiresAuth: true } },
-      { name: "Support", path: "support", component: Support, meta: { requiresAuth: true } },
+      // { name: "Support", path: "support", component: Support, meta: { requiresAuth: true } },
       { name: "StaffList", path: "staff", component: StaffList, meta: { requiresAuth: true } },
     ],
   },
