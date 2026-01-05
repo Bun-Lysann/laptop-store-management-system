@@ -5,6 +5,19 @@
     </header>
     <section class="order-content">
       <div class="order-results" v-if="orderData.length">
+        <!-- Add product by name/brand form -->
+        <div class="mb-4 p-4 bg-gray-50 rounded">
+          <h3 class="font-semibold mb-2">Add product to order</h3>
+          <div class="flex space-x-2">
+            <input v-model="search" placeholder="Search product or brand" class="p-2 border rounded w-1/3" />
+            <select v-model="selectedSerial" class="p-2 border rounded w-1/2">
+              <option value="">-- Select product --</option>
+              <option v-for="p in filteredProducts" :key="p.serial" :value="p.serial">{{ p.name }} — {{ p.category || p.brand || '' }}</option>
+            </select>
+            <input type="number" v-model.number="quantity" min="1" class="p-2 border rounded w-20" />
+            <button @click="handleAddToCart" class="bg-blue-500 text-white px-4 rounded">Add</button>
+          </div>
+        </div>
         <h2 class="text-xl font-semibold mb-2">Order Results</h2>
         <table class="min-w-full bg-white">
           <thead class="bg-gray-800 text-white">
@@ -76,51 +89,68 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { useRouter } from 'vue-router';
+import { orders, loadOrders, saveOrders, products, loadProducts, addToCart } from "../backends/dataStorage.js";
 
-const orderData = ref([]);
 const router = useRouter();
 
-// Retrieve the orders from localStorage when the component is mounted
 onMounted(() => {
-  const storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
-  orderData.value = storedOrders;
+  loadOrders();
 });
+
+// load products for add form
+onMounted(() => {
+  loadProducts();
+});
+
+const orderData = computed(() => orders.value);
+
+// Add-product form state
+const search = ref('');
+const selectedSerial = ref('');
+const quantity = ref(1);
+
+const filteredProducts = computed(() => {
+  const q = (search.value || '').toLowerCase();
+  return products.value.filter(p => {
+    if (!q) return true;
+    return (p.name || '').toLowerCase().includes(q) || (p.category || '').toLowerCase().includes(q) || (p.serial || '').toLowerCase().includes(q);
+  });
+});
+
+const handleAddToCart = () => {
+  if (!selectedSerial.value) return alert('Select a product to add');
+  const prod = products.value.find(p => p.serial === selectedSerial.value || p.id === selectedSerial.value);
+  if (!prod) return alert('Product not found');
+  addToCart({ ...prod, quantity: Number(quantity.value || 1) });
+  alert(`Added ${prod.name} x${quantity.value} to cart`);
+};
 
 // Update the quantity of a product
 const updateQuantity = (order, change) => {
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-  const product = orders.find((p) => p.id === order.id);
+  const list = orders.value || [];
+  const product = list.find((p) => (p.id && p.id === order.id) || (p.serial && p.serial === order.serial));
   if (product) {
-    product.quantity += change;
-    if (product.quantity < 1) product.quantity = 1; // Prevent quantity from being less than 1
-    localStorage.setItem("orders", JSON.stringify(orders));
-
-    // Update the UI
-    orderData.value = [...orders];
+    product.quantity = Math.max(1, Number(product.quantity || 0) + change);
+    saveOrders();
   }
 };
 
 // Remove an order from the list
 const removeOrder = (index) => {
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-  orders.splice(index, 1);
-  localStorage.setItem("orders", JSON.stringify(orders));
-
-  // Update the UI
-  orderData.value = [...orders];
+  orders.value.splice(index, 1);
+  saveOrders();
 };
 
 // Compute the total price based on quantity and price
 const totalPrice = computed(() => {
-  return orderData.value.reduce((total, order) => {
-    return total + order.price * order.quantity;
-  }, 0).toFixed(2); // Ensure the total is rounded to 2 decimal places
+  return (orderData.value.reduce((total, order) => {
+    return total + Number(order.price || 0) * Number(order.quantity || 0);
+  }, 0)).toFixed(2);
 });
 
 // Redirect to payment page
 const proceedToPayment = () => {
   // You can send the order data or the total price to the payment page if needed
-  router.push('/payment'); // Assuming you have a '/payment' route configured for the payment page
+  router.push({ name: 'PaymentPage' });
 };
 </script>

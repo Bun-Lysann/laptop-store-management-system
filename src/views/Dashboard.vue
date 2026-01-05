@@ -74,14 +74,14 @@ const selectStorage = (storageOption) => {
                 </div>
                 <div class="h-auto py-20 list-none w-full place-items-center relative">
                     <ul class="font-[Dangrek]">
-                        <router-link to="/home" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ទំព័រដើម</router-link>
-                        <router-link to="/cards" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ផលិតផល​</router-link>
-                        <router-link to="/list" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">បញ្ជីផលិតផល</router-link>
-                        <router-link to="/staff" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">បញ្ជីបុគ្គលិក</router-link>
-                        <router-link to="/order" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ការកម្មង់</router-link>
-                        <router-link to="/payment" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ការទូទាត់</router-link>
-                        <router-link to="/reports" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">របាយការណ៍</router-link>
-                        <router-link to="/support" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ទំនាក់ទំនង</router-link>
+                        <router-link :to="{ name: 'HomePage' }" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ទំព័រដើម</router-link>
+                        <router-link :to="{ name: 'ProductCards' }" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ផលិតផល​</router-link>
+                        <router-link :to="{ name: 'ProductList' }" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">បញ្ជីផលិតផល</router-link>
+                        <router-link :to="{ name: 'StaffList' }" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">បញ្ជីបុគ្គលិក</router-link>
+                        <router-link :to="{ name: 'OrderPage' }" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ការកម្មង់</router-link>
+                        <router-link :to="{ name: 'PaymentPage' }" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ការទូទាត់</router-link>
+                        <router-link :to="{ name: 'ReportPage' }" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">របាយការណ៍</router-link>
+                        <router-link :to="{ name: 'Support' }" class="flex items-center p-2 pr-8 text-xl hover:bg-blue-200 rounded-md"><img class="w-6 items-center" src="" alt="">ទំនាក់ទំនង</router-link>
                     </ul>
                 </div>
                 <div>
@@ -103,12 +103,12 @@ const selectStorage = (storageOption) => {
                                 <img src="../image/icon/filter.png" alt="" class="w-6 h-6">
                             </button>
                             <button @click="" class="item-center rounded-sm p-1 shadow-md hover:bg-gray-200">
-                                <router-link to="/payment">
+                                <router-link :to="{ name: 'PaymentPage' }">
                                     <img src="../image/icon/wallet.png" alt="" class="w-6 h-6">
                                 </router-link>
                             </button>
                             <button class="item-center rounded-sm p-1 shadow-md hover:bg-gray-200">
-                                <router-link to="/add-product">
+                                <router-link :to="{ name: 'AddProduct' }">
                                     <img src="../image/icon/more.png" alt="" class="w-6 h-6">
                                 </router-link>
                             </button>
