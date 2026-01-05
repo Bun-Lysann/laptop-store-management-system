@@ -8,9 +8,7 @@ on:
                 required: true
                 default: "staging"
     push:
-        branches: 
-          - main
-          - master
+        branches: [ main ]
         
 
 jobs:
