@@ -107,12 +107,12 @@ const selectStorage = (storageOption) => {
                                     <img src="../image/icon/wallet.png" alt="" class="w-6 h-6">
                                 </router-link>
                             </button> -->
-                            <button class="item-center rounded-sm p-1 shadow-md hover:bg-gray-200">
+                            <button class="item-center rounded-md p-2 shadow hover:bg-gray-200">
                                 <router-link :to="{ name: 'AddProduct' }">
                                     <img src="../image/icon/more.png" alt="" class="w-6 h-6">
                                 </router-link>
                             </button>
-                            <button @click="" class="item-center justify-center flex rounded-sm p-1 shadow-md hover:bg-gray-200">
+                            <button @click="" class="item-center justify-center flex rounded-md p-2 shadow hover:bg-gray-200">
                                 <label for="" class="items-center font-[Poppins] mr-2">Name</label>
                                 <img src="../image/icon/profile-user.png" alt="" class="w-6 h-6">
                             </button>
