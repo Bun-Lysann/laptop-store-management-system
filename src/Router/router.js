@@ -74,6 +74,7 @@ import RegisterAdmin from "../Partial/RegisterAdmin.vue";
 import Dashboard from "../views/Dashboard.vue";
 import HomePage from "../components/HomePage.vue";
 import StaffList from "../components/Staff_list.vue";
+import Support from "../components/support_page.vue";
 
 const routes = [
   {
@@ -98,6 +99,7 @@ const routes = [
       { name: "ReportPage", path: "reports", component: ReportPage, meta: { requiresAuth: true } },
       { name: "AddProduct", path: "add-product", component: AddProduct, meta: { requiresAuth: true } },
       { name: "StaffList", path: "staff", component: StaffList, meta: { requiresAuth: true } },
+      { name: "Support", path: "support", component: Support, meta: { requiresAuth: true } },
     ],
   },
 ];
